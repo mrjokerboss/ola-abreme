@@ -2,61 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>💖 Te Amo 💖</title>
+  <title>Para Ti 💖</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
-      font-family: 'Segoe Script', cursive;
+      background: linear-gradient(to bottom, #ffe6f0, #fff);
+      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      text-align: center;
     }
 
     h1 {
-      margin-top: 50px;
-      font-size: 48px;
-      color: #ff3399;
-      text-shadow: 2px 2px #fff;
+      text-align: center;
+      margin-top: 20vh;
+      font-size: 3em;
+      color: #d63384;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    .mensaje {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
       position: absolute;
-      font-size: 24px;
-      color: #ff66cc;
-      animation: flotar 6s ease-in-out infinite;
-      opacity: 0.8;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Heart_corazón.svg/1024px-Heart_corazón.svg.png') no-repeat center;
+      background-size: contain;
+      animation: fall 5s linear infinite;
     }
 
-    @keyframes flotar {
-      0% {transform: translateY(100vh); opacity: 0;}
-      50% {opacity: 1;}
-      100% {transform: translateY(-100vh); opacity: 0;}
+    @keyframes fall {
+      0% { top: -50px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <h1>💌 Te amo mucho 💌</h1>
+  <h1>Gracias por estar aquí 💗</h1>
 
+  <!-- Música suave de fondo -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <!-- Corazones cayendo -->
   <script>
-    const frases = [
-      "Eres hermosa 🌸",
-      "Te amo 💖",
-      "Eres increible de verdad ✨",
-      "la chica mas bonita de todo el planeta 💭",
-      "Teamodoro 🌹",
-      "Eres una chica fuerte nunca te rindas❤️"
-    ];
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+      document.body.appendChild(heart);
 
-    for (let i = 0; i < 30; i++) {
-      let msg = document.createElement("div");
-      msg.className = "mensaje";
-      msg.innerText = frases[Math.floor(Math.random() * frases.length)];
-      msg.style.left = Math.random() * window.innerWidth + "px";
-      msg.style.top = Math.random() * window.innerHeight + "px";
-      msg.style.animationDelay = (Math.random() * 5) + "s";
-      document.body.appendChild(msg);
+      setTimeout(() => heart.remove(), 5000);
     }
+
+    setInterval(createHeart, 300);
   </script>
 </body>
 </html>
+
